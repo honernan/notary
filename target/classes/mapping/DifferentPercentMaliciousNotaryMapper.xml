@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.victor.notary.mapper.DifferentPercentMaliciousNotaryMapper" >
+  <resultMap id="BaseResultMap" type="com.victor.notary.model.DifferentPercentMaliciousNotary" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="five" property="five" jdbcType="INTEGER" />
+    <result column="ten" property="ten" jdbcType="INTEGER" />
+    <result column="thirty" property="thirty" jdbcType="INTEGER" />
+    <result column="fourty" property="fourty" jdbcType="INTEGER" />
+    <result column="credit" property="credit" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, five, ten, thirty, fourty, credit
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from diff_percent_malicious_notary
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from diff_percent_malicious_notary
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.victor.notary.model.DifferentPercentMaliciousNotary" >
+    insert into diff_percent_malicious_notary (id, five, ten, 
+      thirty, fourty, credit
+      )
+    values (#{id,jdbcType=INTEGER}, #{five,jdbcType=INTEGER}, #{ten,jdbcType=INTEGER}, 
+      #{thirty,jdbcType=INTEGER}, #{fourty,jdbcType=INTEGER}, #{credit,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.victor.notary.model.DifferentPercentMaliciousNotary" >
+    insert into diff_percent_malicious_notary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="five != null" >
+        five,
+      </if>
+      <if test="ten != null" >
+        ten,
+      </if>
+      <if test="thirty != null" >
+        thirty,
+      </if>
+      <if test="fourty != null" >
+        fourty,
+      </if>
+      <if test="credit != null" >
+        credit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="five != null" >
+        #{five,jdbcType=INTEGER},
+      </if>
+      <if test="ten != null" >
+        #{ten,jdbcType=INTEGER},
+      </if>
+      <if test="thirty != null" >
+        #{thirty,jdbcType=INTEGER},
+      </if>
+      <if test="fourty != null" >
+        #{fourty,jdbcType=INTEGER},
+      </if>
+      <if test="credit != null" >
+        #{credit,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.victor.notary.model.DifferentPercentMaliciousNotary" >
+    update diff_percent_malicious_notary
+    <set >
+      <if test="five != null" >
+        five = #{five,jdbcType=INTEGER},
+      </if>
+      <if test="ten != null" >
+        ten = #{ten,jdbcType=INTEGER},
+      </if>
+      <if test="thirty != null" >
+        thirty = #{thirty,jdbcType=INTEGER},
+      </if>
+      <if test="fourty != null" >
+        fourty = #{fourty,jdbcType=INTEGER},
+      </if>
+      <if test="credit != null" >
+        credit = #{credit,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.victor.notary.model.DifferentPercentMaliciousNotary" >
+    update diff_percent_malicious_notary
+    set five = #{five,jdbcType=INTEGER},
+      ten = #{ten,jdbcType=INTEGER},
+      thirty = #{thirty,jdbcType=INTEGER},
+      fourty = #{fourty,jdbcType=INTEGER},
+      credit = #{credit,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--根据id更新five字段-->
+  <update id="updateFiveByPrimaryKey" parameterType="com.victor.notary.model.DifferentPercentMaliciousNotary" >
+    update diff_percent_malicious_notary
+    set five = #{five,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--根据id更新ten字段-->
+  <update id="updateTenByPrimaryKey" parameterType="com.victor.notary.model.DifferentPercentMaliciousNotary" >
+    update diff_percent_malicious_notary
+    set ten = #{ten,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--根据id更新thirty字段-->
+  <update id="updateThirtyByPrimaryKey" parameterType="com.victor.notary.model.DifferentPercentMaliciousNotary" >
+    update diff_percent_malicious_notary
+    set thirty = #{thirty,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--根据id更新fourty字段-->
+  <update id="updateFourtyByPrimaryKey" parameterType="com.victor.notary.model.DifferentPercentMaliciousNotary" >
+    update diff_percent_malicious_notary
+    set fourty = #{fourty,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--根据id更新credit字段-->
+  <update id="updateCreditById" >
+    update diff_percent_malicious_notary
+    set
+      credit = #{credit,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--统计five字段为1的记录数-->
+  <select id="countFiveNum" resultType="java.lang.Integer">
+    select  count(*)
+      from diff_percent_malicious_notary
+    where five = 1
+  </select>
+  <!--统计ten字段为1的记录数-->
+  <select id="countTenNum" resultType="java.lang.Integer">
+    select  count(*)
+    from diff_percent_malicious_notary
+    where ten = 1
+  </select>
+  <!--统计thirty字段为1的记录数-->
+  <select id="countThirtyNum" resultType="java.lang.Integer">
+    select  count(*)
+    from diff_percent_malicious_notary
+    where thirty = 1
+  </select>
+  <!--统计fourty字段为1的记录数-->
+  <select id="countFourtyNum" resultType="java.lang.Integer">
+    select  count(*)
+    from diff_percent_malicious_notary
+    where fourty = 1
+  </select>
+
+  <!--获取1链信誉值大于1链信誉平均值的几个账户-->
+  <select id="selectFirstNotary" resultMap="BaseResultMap">
+    select * from diff_percent_malicious_notary where credit in (
+      select MAX(credit) from diff_percent_malicious_notary
+    )
+  </select>
+  <!--获取1链信誉值大于1链信誉平均值的几个账户-->
+  <select id="selectNotary" resultMap="BaseResultMap">
+    select *
+    from
+      (select *
+       from diff_percent_malicious_notary
+       where credit &gt;= ((select AVG(credit)
+                               from diff_percent_malicious_notary
+                              )-1)
+      ) AS b
+    where ${num} &lt;&gt; 2
+  </select>
+
+  <!--获取1链信誉值大于1链信誉平均值的几个账户-->
+  <select id="selectHighNotary" resultMap="BaseResultMap">
+    select *
+    from
+      (select *
+       from diff_percent_malicious_notary
+       where credit &gt;= ((select AVG(credit)
+                               from diff_percent_malicious_notary
+                               where credit > 0
+       )) and credit > 0
+      ) AS b
+  </select>
+
+  <!--获取1链信誉值小于1链信誉平均值的几个账户-->
+  <select id="selectLowNotary" resultMap="BaseResultMap">
+    select *
+    from
+      (select *
+       from diff_percent_malicious_notary
+       where credit &lt;= ((select AVG(credit)
+                               from diff_percent_malicious_notary
+                               where credit > 0
+       )) and credit > 0
+      ) AS b
+  </select>
+
+</mapper>

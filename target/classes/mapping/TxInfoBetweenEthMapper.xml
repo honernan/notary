@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.victor.notary.mapper.TxInfoBetweenEthMapper" >
+  <resultMap id="BaseResultMap" type="com.victor.notary.model.TxInfoBetweenEth" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="from" property="from" jdbcType="VARCHAR" />
+    <result column="to" property="to" jdbcType="VARCHAR" />
+    <result column="sourceBlockHash" property="sourceblockhash" jdbcType="VARCHAR" />
+    <result column="targetBlockHash" property="targetblockhash" jdbcType="VARCHAR" />
+    <result column="sourceTxHash" property="sourcetxhash" jdbcType="VARCHAR" />
+    <result column="targetTxHash" property="targettxhash" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="VARCHAR" />
+    <result column="startTime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="endTime" property="endtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, from, to, sourceBlockHash, targetBlockHash, sourceTxHash, targetTxHash, money, 
+    startTime, endTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from txinfobetweeneth
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from txinfobetweeneth
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.victor.notary.model.TxInfoBetweenEth" >
+    insert into txinfobetweeneth (id, from, to, 
+      sourceBlockHash, targetBlockHash, sourceTxHash, 
+      targetTxHash, money, startTime, 
+      endTime)
+    values (#{id,jdbcType=INTEGER}, #{from,jdbcType=VARCHAR}, #{to,jdbcType=VARCHAR}, 
+      #{sourceblockhash,jdbcType=VARCHAR}, #{targetblockhash,jdbcType=VARCHAR}, #{sourcetxhash,jdbcType=VARCHAR}, 
+      #{targettxhash,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.victor.notary.model.TxInfoBetweenEth" >
+    insert into txinfobetweeneth
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="from != null" >
+        from,
+      </if>
+      <if test="to != null" >
+        to,
+      </if>
+      <if test="sourceblockhash != null" >
+        sourceBlockHash,
+      </if>
+      <if test="targetblockhash != null" >
+        targetBlockHash,
+      </if>
+      <if test="sourcetxhash != null" >
+        sourceTxHash,
+      </if>
+      <if test="targettxhash != null" >
+        targetTxHash,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="starttime != null" >
+        startTime,
+      </if>
+      <if test="endtime != null" >
+        endTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="from != null" >
+        #{from,jdbcType=VARCHAR},
+      </if>
+      <if test="to != null" >
+        #{to,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceblockhash != null" >
+        #{sourceblockhash,jdbcType=VARCHAR},
+      </if>
+      <if test="targetblockhash != null" >
+        #{targetblockhash,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcetxhash != null" >
+        #{sourcetxhash,jdbcType=VARCHAR},
+      </if>
+      <if test="targettxhash != null" >
+        #{targettxhash,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.victor.notary.model.TxInfoBetweenEth" >
+    update txinfobetweeneth
+    <set >
+      <if test="from != null" >
+        from = #{from,jdbcType=VARCHAR},
+      </if>
+      <if test="to != null" >
+        to = #{to,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceblockhash != null" >
+        sourceBlockHash = #{sourceblockhash,jdbcType=VARCHAR},
+      </if>
+      <if test="targetblockhash != null" >
+        targetBlockHash = #{targetblockhash,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcetxhash != null" >
+        sourceTxHash = #{sourcetxhash,jdbcType=VARCHAR},
+      </if>
+      <if test="targettxhash != null" >
+        targetTxHash = #{targettxhash,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        startTime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endTime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.victor.notary.model.TxInfoBetweenEth" >
+    update txinfobetweeneth
+    set from = #{from,jdbcType=VARCHAR},
+      to = #{to,jdbcType=VARCHAR},
+      sourceBlockHash = #{sourceblockhash,jdbcType=VARCHAR},
+      targetBlockHash = #{targetblockhash,jdbcType=VARCHAR},
+      sourceTxHash = #{sourcetxhash,jdbcType=VARCHAR},
+      targetTxHash = #{targettxhash,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=TIMESTAMP},
+      endTime = #{endtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

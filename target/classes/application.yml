@@ -1,0 +1,20 @@
+server:
+  port: 8081
+  tomcat:
+    uri-encoding: UTF-8
+
+
+#多配置文件
+spring:
+  application:
+    name: transaction-service
+  profiles:
+    active: dev
+  mvc:
+    async:
+      request-timeout: 30000
+#web3j:
+#  client-address: http://172.23.17.135:8547
+  #client-address: http://10.1.4.192:8547
+  http-timeout-seconds: 600
+
