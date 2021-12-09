@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.victor.notary.mapper.NotaryBetweenEthMapper" >
+  <resultMap id="BaseResultMap" type="com.victor.notary.model.NotaryBetweenEth" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ethChain1" property="ethchain1" jdbcType="VARCHAR" />
+    <result column="userAddress1" property="useraddress1" jdbcType="VARCHAR" />
+    <result column="UserKeyFileJson1" property="userkeyfilejson1" jdbcType="VARCHAR" />
+    <result column="money1" property="money1" jdbcType="VARCHAR" />
+    <result column="flag1" property="flag1" jdbcType="INTEGER" />
+    <result column="credit1" property="credit1" jdbcType="INTEGER" />
+    <result column="ethChain2" property="ethchain2" jdbcType="VARCHAR" />
+    <result column="UserAddress2" property="useraddress2" jdbcType="VARCHAR" />
+    <result column="UserKeyFileJson2" property="userkeyfilejson2" jdbcType="VARCHAR" />
+    <result column="money2" property="money2" jdbcType="VARCHAR" />
+    <result column="flag2" property="flag2" jdbcType="INTEGER" />
+    <result column="credit2" property="credit2" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ethChain1, userAddress1, UserKeyFileJson1, money1, flag1, credit1, ethChain2, UserAddress2, UserKeyFileJson2,
+    money2, flag2, credit2
+  </sql>
+  <!--根据id获取公证人组对象-->
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from notarybetweeneth
+    where id = #{id}
+  </select>
+  <!--根据id获取公证人组对象-->
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from notarybetweeneth
+  </select>
+  <!--根据user1的id获取公证人组对象-->
+  <select id="selectByUser1" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from notarybetweeneth
+    where userAddress1 = #{userAddress1}
+  </select>
+  <!--统计公证人组用户数-->
+  <select id="countNotary" resultType="java.lang.Integer">
+    select
+      count(*)
+    from notarybetweeneth
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from notarybetweeneth
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.victor.notary.model.NotaryBetweenEth" >
+    insert into notarybetweeneth (id, ethChain1, userAddress1, 
+      UserKeyFileJson1, money1, flag1, credit1, ethChain2,
+      UserAddress2, UserKeyFileJson2, money2, flag2, credit2
+      )
+    values (#{id,jdbcType=INTEGER}, #{ethchain1,jdbcType=VARCHAR}, #{useraddress1,jdbcType=VARCHAR}, 
+      #{userkeyfilejson1,jdbcType=VARCHAR}, #{money1,jdbcType=VARCHAR}, #{flag1,jdbcType=INTEGER}, #{credit1,jdbcType=INTEGER},
+      #{ethchain2,jdbcType=VARCHAR},#{useraddress2,jdbcType=VARCHAR}, #{userkeyfilejson2,jdbcType=VARCHAR},
+      #{money2,jdbcType=VARCHAR}, #{flag2,jdbcType=INTEGER}, #{credit2,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.victor.notary.model.NotaryBetweenEth" >
+    insert into notarybetweeneth
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ethchain1 != null" >
+        ethChain1,
+      </if>
+      <if test="useraddress1 != null" >
+        userAddress1,
+      </if>
+      <if test="userkeyfilejson1 != null" >
+        UserKeyFileJson1,
+      </if>
+      <if test="money1 != null" >
+        money1,
+      </if>
+      <if test="flag1 != null" >
+        flag1,
+      </if>
+      <if test="credit1 != null" >
+        credit1,
+      </if>
+      <if test="ethchain2 != null" >
+        ethChain2,
+      </if>
+      <if test="useraddress2 != null" >
+        UserAddress2,
+      </if>
+      <if test="userkeyfilejson2 != null" >
+        UserKeyFileJson2,
+      </if>
+      <if test="money2 != null" >
+        money2,
+      </if>
+      <if test="flag2 != null" >
+        flag2,
+      </if>
+      <if test="credit2 != null" >
+        credit2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ethchain1 != null" >
+        #{ethchain1,jdbcType=VARCHAR},
+      </if>
+      <if test="useraddress1 != null" >
+        #{useraddress1,jdbcType=VARCHAR},
+      </if>
+      <if test="userkeyfilejson1 != null" >
+        #{userkeyfilejson1,jdbcType=VARCHAR},
+      </if>
+      <if test="money1 != null" >
+        #{money1,jdbcType=VARCHAR},
+      </if>
+      <if test="flag1 != null" >
+        #{flag1,jdbcType=INTEGER},
+      </if>
+      <if test="credit1 != null" >
+        #{credit1,jdbcType=INTEGER},
+      </if>
+      <if test="ethchain2 != null" >
+        #{ethchain2,jdbcType=VARCHAR},
+      </if>
+      <if test="useraddress2 != null" >
+        #{useraddress2,jdbcType=VARCHAR},
+      </if>
+      <if test="userkeyfilejson2 != null" >
+        #{userkeyfilejson2,jdbcType=VARCHAR},
+      </if>
+      <if test="money2 != null" >
+        #{money2,jdbcType=VARCHAR},
+      </if>
+      <if test="flag2 != null" >
+        #{flag2,jdbcType=INTEGER},
+      </if>
+      <if test="credit2 != null" >
+        #{credit2,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.victor.notary.model.NotaryBetweenEth" >
+    update notarybetweeneth
+    <set >
+      <if test="ethchain1 != null" >
+        ethChain1 = #{ethchain1,jdbcType=VARCHAR},
+      </if>
+      <if test="useraddress1 != null" >
+        userAddress1 = #{useraddress1,jdbcType=VARCHAR},
+      </if>
+      <if test="userkeyfilejson1 != null" >
+        UserKeyFileJson1 = #{userkeyfilejson1,jdbcType=VARCHAR},
+      </if>
+      <if test="money1 != null" >
+        money1 = #{money1,jdbcType=VARCHAR},
+      </if>
+      <if test="flag1 != null" >
+        flag1 = #{flag1,jdbcType=INTEGER},
+      </if>
+      <if test="credit1 != null" >
+        credit1 = #{credit1,jdbcType=INTEGER},
+      </if>
+      <if test="ethchain2 != null" >
+        ethChain2 = #{ethchain2,jdbcType=VARCHAR},
+      </if>
+      <if test="useraddress2 != null" >
+        UserAddress2 = #{useraddress2,jdbcType=VARCHAR},
+      </if>
+      <if test="userkeyfilejson2 != null" >
+        UserKeyFileJson2 = #{userkeyfilejson2,jdbcType=VARCHAR},
+      </if>
+      <if test="money2 != null" >
+        money2 = #{money2,jdbcType=VARCHAR},
+      </if>
+      <if test="flag2 != null" >
+        flag2 = #{flag2,jdbcType=INTEGER},
+      </if>
+      <if test="credit2 != null" >
+        credit2 = #{credit2,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.victor.notary.model.NotaryBetweenEth" >
+    update notarybetweeneth
+    set ethChain1 = #{ethchain1,jdbcType=VARCHAR},
+      userAddress1 = #{useraddress1,jdbcType=VARCHAR},
+      UserKeyFileJson1 = #{userkeyfilejson1,jdbcType=VARCHAR},
+      money1 = #{money1,jdbcType=VARCHAR},
+      flag1 = #{flag1,jdbcType=INTEGER},
+      credit1 = #{credit1,jdbcType=INTEGER},
+      ethChain2 = #{ethchain2,jdbcType=VARCHAR},
+      UserAddress2 = #{useraddress2,jdbcType=VARCHAR},
+      UserKeyFileJson2 = #{userkeyfilejson2,jdbcType=VARCHAR},
+      money2 = #{money2,jdbcType=VARCHAR},
+      flag2 = #{flag2,jdbcType=INTEGER},
+      credit1 = #{credit1,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateMoney2ByUserAddr2" parameterType="java.lang.String" >
+    update notarybetweeneth
+    set
+      money2 = #{money2,jdbcType=VARCHAR}
+    where UserAddress2 = #{userAddress2,jdbcType=VARCHAR}
+  </update>
+
+  <!--获取1链信誉值大于1链信誉平均值的几个账户-->
+  <select id="selectNotary" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select *
+    from
+      (select *
+       from notarybetweeneth
+       where credit1 &gt;= ((select AVG(credit1)
+                         from notarybetweeneth
+                          where id &lt;&gt; 1
+                        )-1)
+        and id &lt;&gt; 1
+      ) AS b
+    where b.id &lt;&gt; #{id,jdbcType=INTEGER}
+  </select>
+  <!--根据用户地址更新余额-->
+  <update id="updateMoney1ByUserAddr1" parameterType="java.lang.String" >
+    update notarybetweeneth
+    set
+      money1 = #{money1,jdbcType=VARCHAR}
+    where UserAddress1 = #{userAddress1,jdbcType=VARCHAR}
+  </update>
+  <!--根据公证人组表的id更新信誉值-->
+  <update id="updateCreditById" parameterType="java.lang.Integer" >
+    update notarybetweeneth
+    set
+      credit1 = #{credit1,jdbcType=INTEGER},
+      credit2 = #{credit2,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

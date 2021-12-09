@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.victor.notary.mapper.SecondPointMapper" >
+  <resultMap id="BaseResultMap" type="com.victor.notary.model.SecondPoint" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DOUBLE" />
+    <result column="credit" property="credit" jdbcType="DOUBLE" />
+    <result column="successnum" property="successnum" jdbcType="INTEGER" />
+    <result column="failnum" property="failnum" jdbcType="INTEGER" />
+    <result column="haderror" property="haderror" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, money, credit, successnum, failnum, haderror
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from secondpoint
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from secondpoint
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.victor.notary.model.SecondPoint" >
+    insert into secondpoint (id, money, credit, 
+      successnum, failnum, haderror
+      )
+    values (#{id,jdbcType=INTEGER}, #{money,jdbcType=DOUBLE}, #{credit,jdbcType=DOUBLE}, 
+      #{successnum,jdbcType=INTEGER}, #{failnum,jdbcType=INTEGER}, #{haderror,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.victor.notary.model.SecondPoint" >
+    insert into secondpoint
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="credit != null" >
+        credit,
+      </if>
+      <if test="successnum != null" >
+        successnum,
+      </if>
+      <if test="failnum != null" >
+        failnum,
+      </if>
+      <if test="haderror != null" >
+        haderror,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="credit != null" >
+        #{credit,jdbcType=DOUBLE},
+      </if>
+      <if test="successnum != null" >
+        #{successnum,jdbcType=INTEGER},
+      </if>
+      <if test="failnum != null" >
+        #{failnum,jdbcType=INTEGER},
+      </if>
+      <if test="haderror != null" >
+        #{haderror,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.victor.notary.model.SecondPoint" >
+    update secondpoint
+    <set >
+      <if test="money != null" >
+        money = #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="credit != null" >
+        credit = #{credit,jdbcType=DOUBLE},
+      </if>
+      <if test="successnum != null" >
+        successnum = #{successnum,jdbcType=INTEGER},
+      </if>
+      <if test="failnum != null" >
+        failnum = #{failnum,jdbcType=INTEGER},
+      </if>
+      <if test="haderror != null" >
+        haderror = #{haderror,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.victor.notary.model.SecondPoint" >
+    update secondpoint
+    set money = #{money,jdbcType=DOUBLE},
+      credit = #{credit,jdbcType=DOUBLE},
+      successnum = #{successnum,jdbcType=INTEGER},
+      failnum = #{failnum,jdbcType=INTEGER},
+      haderror = #{haderror,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--查询所有公证人-->
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from secondpoint
+  </select>
+  <!--查询所有公证人的总利润-->
+  <select id="selectTotalMoney" resultType="java.lang.Double">
+    select sum(money)
+    from secondpoint
+  </select>
+  <!--查询利润小于平均利润的公证人-->
+  <select id="selectLower" resultMap="BaseResultMap">
+    select *
+    from secondpoint
+    where money &lt;= #{money,jdbcType=DOUBLE}
+  </select>
+  <!--查询利润大于平均利润的公证人-->
+  <select id="selectHigher" resultMap="BaseResultMap">
+    select *
+    from secondpoint
+    where money &gt; #{money,jdbcType=DOUBLE}
+  </select>
+  <!--获取小于等于平均利润值的所有公证人的信誉值总和-->
+  <select id="totalCreditOfLower" resultType="java.lang.Double">
+    select sum(credit)
+    from secondpoint
+    where money &lt;= #{money,jdbcType=DOUBLE} and haderror = 0
+  </select>
+  <!--获取大于平均利润值的所有公证人的信誉值总和-->
+  <select id="totalCreditOfHigher" resultType="java.lang.Double">
+    select sum(credit)
+    from secondpoint
+    where money &gt; #{money,jdbcType=DOUBLE} and haderror = 0
+  </select>
+  <!--获取公证人组的交易总量=成功+失败-->
+  <select id="totalTrade" resultType="java.lang.Integer">
+    select sum(successnum) as conut1, sum(failnum) as conut2
+    from secondpoint
+  </select>
+</mapper>
